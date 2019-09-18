@@ -52,12 +52,15 @@ def main():
     plt.figure(figsize=(8,6))
 
     # Options
-    nx.draw_networkx(G, with_labels=True, node_color=node_colors, cmap=plt.cm.Blues, vmin=min(node_colors)-range_of_colors*0.4, vmax=max(node_colors), font_weight='bold', pos=nx.planar_layout(G))
+     try: 
+        nx.draw_networkx(G, with_labels=True, node_color=node_colors, cmap=plt.cm.Blues, vmin=min(node_colors)-range_of_colors*0.4, vmax=max(node_colors), font_weight='bold', pos=nx.planar_layout(G))
+    except:
+        nx.draw_networkx(G, with_labels=True, node_color=node_colors, cmap=plt.cm.Blues, vmin=min(node_colors)-range_of_colors*0.4, vmax=max(node_colors), font_weight='bold', pos=nx.circular_layout(G))
     plt.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
     plt.tick_params(axis='y', which='both', right=False, left=False, labelleft=False)
     for pos in ['right','top','bottom','left']:
         plt.gca().spines[pos].set_visible(False)
-    plt.show()
+    #plt.show()
 
     # Save plot
     plt.savefig("citation_graph.eps")
