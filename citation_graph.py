@@ -1,3 +1,5 @@
+import datetime
+
 # Matplot lib
 import matplotlib.pyplot as plt
 # Bibtex parser
@@ -26,8 +28,8 @@ def main():
     dict_pos = {}
     dict_qpycurr = {}
     
-    initial_year = 2000
-    current_year = 2020
+    initial_year = datatime.date.today().year - 20
+    current_year = datatime.date.today().year
     dict_qpy = {}
     i = initial_year
     while i <= current_year:
