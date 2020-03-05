@@ -65,7 +65,7 @@ def main():
     for entry in bib_database.entries:
         if 'citations' in entry:
             print(entry['ID'])
-            for citation_id in entry['citations'].split(','):
+            for citation_id in entry['citations'].replace('\n', '').split(','):
                 print('   ' + citation_id)
                 if citation_id:
                     if cite_as_noun:
