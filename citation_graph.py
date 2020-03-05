@@ -1,3 +1,5 @@
+import argparse
+
 # Matplot lib
 import matplotlib.pyplot as plt
 # Bibtex parser
@@ -7,12 +9,12 @@ import networkx as nx
 
 from networkx.drawing.layout import *
 
-def main():
+def main(bibtex_filename, fig_filename):
     # Settings
     cite_as_noun = True
 
     # Open bibtext
-    with open('bibtex.bib') as bibtex_file:
+    with open(bibtex_filename) as bibtex_file:
         bib_database = bibtexparser.load(bibtex_file)
 
     print(bib_database.entries)
@@ -135,7 +137,7 @@ def main():
     
     
     # Save plot
-    plt.savefig("citation_graph.eps")
+    plt.savefig(fig_filename)
 
     # End main
     return 0
@@ -176,4 +178,18 @@ def count_by_attribute(entries,attribute_name,attribute_value):
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(description='Citation Graphs')
+    parser.add_argument(
+        '--bibtex',
+        default="bibtex.bib",
+        help='BibTeX file with references'
+    )
+    parser.add_argument(
+        '--fig',
+        default="citation_graph.eps",
+        help='Name of image file for the citation graph'
+    )
+
+    args = parser.parse_args()
+
+    main(args.bibtex, args.fig)
