@@ -8,7 +8,7 @@ import bibtexparser
 import networkx as nx
 from networkx.drawing.layout import *
 
-def main(bibtex_filename, fig_filename):
+def main(bibtex_filename, fig_filename, headless=False):
     # Settings
     cite_as_noun = True
 
@@ -127,7 +127,8 @@ def main(bibtex_filename, fig_filename):
         plt.gca().spines[pos].set_visible(False)
 
     # Show plot
-    plt.show()
+    if headless is True:
+        plt.show()
 
     # Save plot
     plt.savefig(fig_filename)
@@ -179,7 +180,16 @@ if __name__ == '__main__':
         default="citation_graph.eps",
         help='Name of image file for the citation graph'
     )
+    parser.add_argument(
+        '--headless',
+        action='store_true',
+        help='Starts in "headless mode", which allows  using  the  application without user a interface'
+    )
 
     args = parser.parse_args()
 
-    main(args.bibtex, args.fig)
+    main(
+        args.bibtex,
+        args.fig,
+        headless=args.headless
+    )
