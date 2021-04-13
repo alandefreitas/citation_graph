@@ -127,7 +127,7 @@ def main(bibtex_filename, fig_filename, headless=False):
         plt.gca().spines[pos].set_visible(False)
 
     # Show plot
-    if headless is True:
+    if headless is False:
         plt.show()
 
     # Save plot
