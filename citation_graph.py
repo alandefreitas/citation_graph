@@ -126,12 +126,12 @@ def main(bibtex_filename, fig_filename, headless=False):
     for pos in ['right','top','bottom','left']:
         plt.gca().spines[pos].set_visible(False)
 
+    # Save plot
+    plt.savefig(fig_filename)
+
     # Show plot
     if headless is False:
         plt.show()
-
-    # Save plot
-    plt.savefig(fig_filename)
 
     # End main
     return 0
